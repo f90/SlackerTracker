@@ -80,20 +80,6 @@ function ST:getBuffsOfActiveUnit(activeUnit)
 	return buffs, buffSpellIds
 end
 
-function ST:getBuffsOfRaidMember(n)
-	local activeUnit = "raid"..n
-	local activeUnitName = UnitName(activeUnit)
-	local buffs, buffSpellIds = ST:getBuffsOfActiveUnit(activeUnit)
-	return activeUnitName, buffs, buffSpellIds
-end
-
-function ST:getBuffsOfPartyMember(n)
-	local activeUnit = "party"..n
-	local activeUnitName = UnitName(activeUnit)
-	local buffs, buffSpellIds = ST:getBuffsOfActiveUnit(activeUnit)
-	return activeUnitName, buffs
-end
-
 function ST:genActiveUnit(n, groupStatus)
 	if groupStatus == "raid" then
 		return "raid"..n
