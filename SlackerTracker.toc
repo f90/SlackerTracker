@@ -1,0 +1,7 @@
+## Interface: 11306
+## Title: Slacker Tracker
+## Notes: Tracks a number of Consumables and Buffs
+## Author: fuse
+## Version: 0.1
+SlackerTracker.lua
+SlackerTracker.xml
