@@ -3,5 +3,11 @@
 ## Notes: Tracks a number of Consumables and Buffs
 ## Author: fuse
 ## Version: 0.1
+
+core.lua
+utils.lua
+roles.lua
+consumables.lua
 SlackerTracker.lua
+
 SlackerTracker.xml
