@@ -4,8 +4,8 @@
    <Button name='MyXMLButton' parent='UIParent' inherits='UIPanelButtonTemplate'>
       <Size x='32' y='32' />
       <Anchors>
-         <Anchor point='CENTER'>
-		  <Offset><AbsDimension x="100" y="80" /></Offset>
+         <Anchor point='TOP'>
+		  <Offset><AbsDimension x="300" y="-100" /></Offset>
 		 </Anchor> 
       </Anchors>
       <Scripts>

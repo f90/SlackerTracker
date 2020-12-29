@@ -1,5 +1,5 @@
 ST.role = {
-TANK = 1,
+TANK = 1, -- Warrior Tank or Druid Tank
 DRUID = 2, -- Heal Druid
 PRIEST = 3, -- Heal Priest
 SHAMAN = 4, -- Heal Shaman
@@ -16,6 +16,7 @@ MOONKIN = 14
 }
 
 ST.specialRoleByName = {}
+-- ST.specialRoleByName["Stoffoo"] = ST.role["TANK"]
 ST.specialRoleByName["Tyranox"] = ST.role["TANK"]
 ST.specialRoleByName["Steveyo"] = ST.role["TANK"]
 ST.specialRoleByName["Skogtroll"] = ST.role["TANK"]

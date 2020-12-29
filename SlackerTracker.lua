@@ -52,23 +52,67 @@ function ST:processPlayer(name, class)
 		end
 		-- Now we know whether this player has at least one buff from the category
 		out[category] = buffed
-		print(name .. ": " .. ST.categoryNameById[category] .. ": " .. tostring(buffed))
+		-- print(name .. ": " .. ST.categoryNameById[category] .. ": " .. tostring(buffed))
 	end
 	return out
 end
 
+
+
 function ST:checkConsumablesOfGroup()
+	ST.missingConsumes = {}
+	for _,val in pairs(ST.category) do
+		ST.missingConsumes[val] = {}
+	end
+	local playerHasConsumes = {}
+	local missingCounter = 0
 	if (IsInGroup() or IsInRaid()) then
 		-- Raid loop
 		for ci=1, MAX_RAID_MEMBERS do
         	local name, rank, subgroup, level, class, classFileName, zone, online, isDead, role, isML = GetRaidRosterInfo(ci)
 			if name then
-				ST:processPlayer(name, classFileName)
+				-- get list of {category1 = true, category2 = false, ...} specific for player
+				playerHasConsumes = ST:processPlayer(name, classFileName)
+				-- loop over player specific 
+				for cat,buffed in pairs(playerHasConsumes) do
+					-- print(cat,buffed)
+					if not buffed then
+						table.insert(ST.missingConsumes[cat], name)
+						missingCounter = missingCounter + 1
+					end
+				end
 			end
 		end
 	else
 		-- Just check ourselves
 		local _, classFileName, _ = UnitClass("player")
-		ST:processPlayer(GetUnitName("player"), classFileName)
+		local name = GetUnitName("player")
+		playerHasConsumes = ST:processPlayer(name, classFileName)
+		for cat,buffed in pairs(playerHasConsumes) do
+			-- print(cat,buffed)
+			if not buffed then
+				table.insert(ST.missingConsumes[cat], name)
+				missingCounter = missingCounter + 1
+			end
+		end
+	end
+	-- local NCategories = ST:tableLength(ST.category)
+	-- print(NCategories)
+	
+	-- for n = 1, NCategories do
+		-- print(ST.categoryNameById[n]..": ", table.concat(ST.missingConsumes[n], " "))
+	-- end
+	
+	-- print missingConsumes by Category
+	-- local groupStatus = ST.getGroupStatus()
+	if missingCounter == 0 then
+		ST:messageToGroup("No consumes are missing")
+	else
+		ST:messageToGroup("Missing Consumables:")
+		for cat,pNames in pairs(ST.missingConsumes) do
+			if pNames[1] then
+				ST:messageToGroup(ST.categoryNameById[cat]..":  "..table.concat(pNames, " "))
+			end
+		end
 	end
 end
