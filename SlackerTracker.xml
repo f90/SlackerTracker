@@ -1,7 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
-   <Button name='MyXMLButton' parent='UIParent' inherits='UIPanelButtonTemplate'>
+   <Button name='FullPackageButton' parent='UIParent' inherits='UIPanelButtonTemplate'>
       <Size x='32' y='32' />
       <Anchors>
          <Anchor point='TOP'>
@@ -10,7 +10,20 @@
       </Anchors>
       <Scripts>
          <OnClick>
-            ST:checkConsumablesOfGroup()
+            ST:checkConsumablesOfGroup(ST.buffPackage["full"])
+         </OnClick>
+      </Scripts>
+   </Button>
+   <Button name='FullPackageButton' parent='UIParent' inherits='UIPanelButtonTemplate'>
+      <Size x='32' y='32' />
+      <Anchors>
+         <Anchor point='TOP'>
+		  <Offset><AbsDimension x="300" y="-140" /></Offset>
+		 </Anchor> 
+      </Anchors>
+      <Scripts>
+         <OnClick>
+            ST:checkConsumablesOfGroup(ST.buffPackage["small"])
          </OnClick>
       </Scripts>
    </Button>

@@ -28,7 +28,8 @@ function ST:getBuffsOfActiveUnit(activeUnit)
 	return ST:getBuffsOfPlayer(GetUnitName(activeUnit))
 end
 
-function ST:processPlayer(name, class)
+-- TODO: choose buff package -> bessere Implementierung
+function ST:processPlayer(name, class, buffPackage)
 	-- Get list of buffs on this player
 	local buffs = ST:getBuffsOfPlayer(name, class)
 
@@ -42,13 +43,22 @@ function ST:processPlayer(name, class)
 	-- Iterate over each category
 	local out = {}
 	for _,category in pairs(consumeCategories) do
-		local spellIds = ST.consumableIdsByCategory[category] -- Retrieve buffs for this category
+		local spellIds = {}
+		if buffPackage == ST.buffPackage["full"] then
+			spellIds = ST.consumableIdsByCategoryFull[category] -- Retrieve buffs for this category
+		elseif buffPackage == ST.buffPackage["small"] then
+			spellIds = ST.consumableIdsByCategorySmall[category] -- Retrieve buffs for this category
+		end
+		
 		local buffed = false
-		for _,buffId in pairs(spellIds) do
-			if buffs[buffId] then
-				-- Player has this buff
-				buffed = true
+		if spellIds[1] then
+			for _,buffId in pairs(spellIds) do
+				if buffs[buffId] then
+					-- Player has this buff
+					buffed = true
+				end
 			end
+		else buffed = true
 		end
 		-- Now we know whether this player has at least one buff from the category
 		out[category] = buffed
@@ -57,9 +67,10 @@ function ST:processPlayer(name, class)
 	return out
 end
 
-
-
-function ST:checkConsumablesOfGroup()
+-- buffPackage is one of
+-- ST.buffPackage["full"]
+-- ST.buffPackage["small"]
+function ST:checkConsumablesOfGroup(buffPackage)
 	ST.missingConsumes = {}
 	for _,val in pairs(ST.category) do
 		ST.missingConsumes[val] = {}
@@ -72,7 +83,7 @@ function ST:checkConsumablesOfGroup()
         	local name, rank, subgroup, level, class, classFileName, zone, online, isDead, role, isML = GetRaidRosterInfo(ci)
 			if name then
 				-- get list of {category1 = true, category2 = false, ...} specific for player
-				playerHasConsumes = ST:processPlayer(name, classFileName)
+				playerHasConsumes = ST:processPlayer(name, classFileName, buffPackage)
 				-- loop over player specific 
 				for cat,buffed in pairs(playerHasConsumes) do
 					-- print(cat,buffed)
@@ -87,7 +98,7 @@ function ST:checkConsumablesOfGroup()
 		-- Just check ourselves
 		local _, classFileName, _ = UnitClass("player")
 		local name = GetUnitName("player")
-		playerHasConsumes = ST:processPlayer(name, classFileName)
+		playerHasConsumes = ST:processPlayer(name, classFileName, buffPackage)
 		for cat,buffed in pairs(playerHasConsumes) do
 			-- print(cat,buffed)
 			if not buffed then
@@ -108,7 +119,13 @@ function ST:checkConsumablesOfGroup()
 	if missingCounter == 0 then
 		ST:messageToGroup("No consumes are missing")
 	else
-		ST:messageToGroup("Missing Consumables:")
+		local string1 = "Missing Consumables"
+		if buffPackage == ST.buffPackage["full"] then
+			string1 = string1.." (full buff package):"
+		elseif buffPackage == ST.buffPackage["small"] then
+			string1 = string1.." (small buff package):"
+		end		
+		ST:messageToGroup(string1)
 		-- print("Missing Consumables:")
 		for cat,pNames in pairs(ST.missingConsumes) do
 			if pNames[1] then
