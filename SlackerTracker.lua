@@ -109,9 +109,11 @@ function ST:checkConsumablesOfGroup()
 		ST:messageToGroup("No consumes are missing")
 	else
 		ST:messageToGroup("Missing Consumables:")
+		-- print("Missing Consumables:")
 		for cat,pNames in pairs(ST.missingConsumes) do
 			if pNames[1] then
 				ST:messageToGroup(ST.categoryNameById[cat]..":  "..table.concat(pNames, " "))
+				-- print(ST.categoryNameById[cat]..":  "..table.concat(pNames, " "))
 			end
 		end
 	end

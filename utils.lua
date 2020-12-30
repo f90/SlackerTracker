@@ -36,3 +36,19 @@ function ST:messageToGroup(message)
 		print(message)
 	end
 end
+
+function ST:printConsumableOverview(buffPackage)
+	if buffPackage == ST.buffPackage["full"] then
+		for role,roleInd in pairs(ST.role) do
+			print(role)
+			for _, catInd in pairs(ST.categoriesByRole[roleInd]) do
+				local conString = ""
+				for _, conId in pairs(ST.consumableIdsByCategoryFull[catInd]) do
+					-- print(ST.consumableIds[conId])
+					conString = conString..ST.consumableIds[conId]..", "
+				end
+				print(ST.categoryNameById[catInd]..":", conString)
+			end
+		end
+	end
+end
