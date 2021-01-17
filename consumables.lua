@@ -220,7 +220,7 @@ ST.consumableIdsByCategorySmall = {}
 
 ST.consumableIdsByCategorySmall[ST.category["Str"]] = {		-- 1
 	ST.consumableIdsByName["ElixirOfTheGiants"],
-	ST.consumableIdsByName["JujuMight"]
+	ST.consumableIdsByName["JujuPower"]
 }
 
 ST.consumableIdsByCategorySmall[ST.category["Agi"]] = {		-- 2

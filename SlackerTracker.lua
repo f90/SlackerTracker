@@ -117,7 +117,8 @@ function ST:checkConsumablesOfGroup(buffPackage)
 	-- print missingConsumes by Category
 	-- local groupStatus = ST.getGroupStatus()
 	if missingCounter == 0 then
-		ST:messageToGroup("No consumes are missing")
+		-- ST:messageToGroup("No consumes are missing")
+		print("No consumes are missing")
 	else
 		local string1 = "Missing Consumables"
 		if buffPackage == ST.buffPackage["full"] then
@@ -125,12 +126,13 @@ function ST:checkConsumablesOfGroup(buffPackage)
 		elseif buffPackage == ST.buffPackage["small"] then
 			string1 = string1.." (small buff package):"
 		end		
-		ST:messageToGroup(string1)
+		-- ST:messageToGroup(string1)
+		print(string1)
 		-- print("Missing Consumables:")
 		for cat,pNames in pairs(ST.missingConsumes) do
 			if pNames[1] then
-				ST:messageToGroup(ST.categoryNameById[cat]..":  "..table.concat(pNames, " "))
-				-- print(ST.categoryNameById[cat]..":  "..table.concat(pNames, " "))
+				-- ST:messageToGroup(ST.categoryNameById[cat]..":  "..table.concat(pNames, " "))
+				print(ST.categoryNameById[cat]..":  "..table.concat(pNames, " "))
 			end
 		end
 	end
