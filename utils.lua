@@ -42,16 +42,26 @@ function ST:SendChatMessage(msg, chatType, language, channel)
     end
 end
 
-function ST:printConsumableOverview(buffPackage) --TODO wofür is das
-	for role,roleInd in pairs(ST.role) do
-		print(role)
-		for _, catInd in pairs(ST.categoriesByRole[roleInd]) do
-			local conString = ""
-			for _, conId in pairs(ST.buffPackages[buffPackage][catInd]) do
-				-- print(ST.consumableIds[conId])
-				conString = conString..ST.consumableIds[conId]..", "
-			end
-			print(ST.categoryNameById[catInd]..":", conString)
+function ST:printConsumableOverview(buffPackage) -- Prints out a buff package in readable form, listing for each role the list of categories to buff up, and which buffs fulfil these categories
+    print("BUFF PACKAGE: " .. buffPackage)
+	for role,roleInd in pairs(ST.role) do -- Go through each role
+		local roleString = role
+        if ST.specialRoleByRole[roleInd] then -- List specific names assigned to special roles too, if we have them
+            roleString = roleString .. " (" .. table.concat(ST.specialRoleByRole[roleInd], ", ") .. ")"
+        end
+        print(roleString)
+
+        for _, catInd in pairs(ST.categoriesByRole[roleInd]) do -- Go through all potentially required categories for this role
+            if ST.buffPackages[buffPackage][catInd] then -- This category might not be required for this role under this buffPackage
+                local conString = ""
+                for _, conId in pairs(ST.buffPackages[buffPackage][catInd]) do
+                    -- print(ST.consumableIds[conId])
+                    conString = conString .. ST.consumableIds[conId] .. " or "
+                end
+                conString = conString:sub(1,string.utf8len(conString)-4) -- Cut off last "or"
+                print(ST.categoryNameById[catInd]..":", conString)
+            end
 		end
+        print("")
 	end
 end

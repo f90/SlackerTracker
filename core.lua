@@ -39,10 +39,13 @@ function ST:processConsoleCommand(cmd)
 		ST_MainFrame:Show()
 	elseif cmd == "hide" then
 		ST_MainFrame:Hide()
+	elseif cmd == "print" then
+		ST:printConsumableOverview(ST.currBuffPackage)
 	else
 		ST:Print("") -- Print just our addon name first
 		print("prefix: /st - shows/hides main frame")
 		print(" - show - shows the main frame")
 		print(" - hide - hide the main frame")
+		print(" - print - print a summary of the required buffs in the current buff package")
 	end
 end

@@ -17,7 +17,7 @@ ELEMENTAL = 13, -- Ele Shaman
 MOONKIN = 14
 }
 
--- Special role overrides for certain people
+-- Special role overrides for certain people (tanks, cat, enhancer, elemental, moonkin, shadow)
 ST.specialRoleByName = {}
 ST.specialRoleByName["Tyranox"] = ST.role["TANK"]
 ST.specialRoleByName["Skogtroll"] = ST.role["TANK"]
@@ -28,3 +28,13 @@ ST.specialRoleByName["Pakuun"] = ST.role["CAT"]
 ST.specialRoleByName["Durator"] = ST.role["ENHANCER"]
 ST.specialRoleByName["Hämpi"] = ST.role["ENHANCER"]
 ST.specialRoleByName["Hanutamatata"] = ST.role["ELEMENTAL"]
+
+-- Build "inverse" table so that for each special role, we can directly get a list of players playing that role
+ST.specialRoleByRole = {}
+for name, role in pairs(ST.specialRoleByName) do
+    if ST.specialRoleByRole[role] then
+        table.insert(ST.specialRoleByRole[role], name)
+    else
+        ST.specialRoleByRole[role] = {name}
+    end
+end
