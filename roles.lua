@@ -1,3 +1,5 @@
+local addon, ST = ...
+
 ST.role = {
 TANK = 1, -- Warrior Tank or Druid Tank
 DRUID = 2, -- Heal Druid
@@ -15,10 +17,9 @@ ELEMENTAL = 13, -- Ele Shaman
 MOONKIN = 14
 }
 
+-- Special role overrides for certain people
 ST.specialRoleByName = {}
--- ST.specialRoleByName["Stoffoo"] = ST.role["TANK"]
 ST.specialRoleByName["Tyranox"] = ST.role["TANK"]
-ST.specialRoleByName["Steveyo"] = ST.role["TANK"]
 ST.specialRoleByName["Skogtroll"] = ST.role["TANK"]
 ST.specialRoleByName["Mudcrawler"] = ST.role["TANK"]
 ST.specialRoleByName["Kronk"] = ST.role["TANK"]

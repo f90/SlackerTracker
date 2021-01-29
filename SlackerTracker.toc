@@ -4,10 +4,13 @@
 ## Author: fuse
 ## Version: 0.1
 
+libs.xml
+
 core.lua
 utils.lua
 roles.lua
 consumables.lua
-SlackerTracker.lua
+buffPackages.lua
+checker.lua
 
 SlackerTracker.xml

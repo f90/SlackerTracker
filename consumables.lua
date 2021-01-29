@@ -1,3 +1,5 @@
+local addon, ST = ...
+
 ST.category = {
 Str = 1,
 Agi = 2,
@@ -13,19 +15,9 @@ CasterFood = 11,
 HealerFood = 12,
 SpiritAlc = 13
 }
+ST.categoryNameById = ST:reverseMap(ST.category)
 
-ST.categoryNameById = ST.reverseMap(ST.category)
-
--- TODO: choose buff package -> bessere Implementierung
--- names of possible buff packages
-ST.buffPackage = {
-	full = 1,
-	small = 2,
-}
-
--- choose buff package, players should have
--- demandedBuffPackage = buffPackage["full"]
-
+-- ROLE -> ALL POSSIBLE CATEGORIES TO CHECK FOR THAT ROLE
 local categoriesByRole = {}
 categoriesByRole[ST.role["TANK"]] = {ST.category["Str"], ST.category["Agi"], ST.category["Armor"], ST.category["TankFood"]}
 categoriesByRole[ST.role["DRUID"]] = {ST.category["MP5Pot"], ST.category["HealerFood"], ST.category["SpiritAlc"]}
@@ -118,177 +110,4 @@ consumableIds[17627] = "FlaskOfDistilledWisdom"
 consumableIds[17628] = "FlaskOfSupremePower"
 
 ST.consumableIds = consumableIds
-
-ST.consumableIdsByName = ST.reverseMap(consumableIds)
-
-------------------------------------------------------------------------------
--- Set Consumable Categories for Full-Buffed Package
--- TODO: choose buff package -> bessere Implementierung
-ST.consumableIdsByCategoryFull = {}
--- Str = 1,
--- Agi = 2,
--- AP = 3,
--- Armor = 4,
--- SP = 5,
--- SpecSP = 6,
--- MP5Pot = 7,
--- TankFood = 8,
--- MeleeFood = 9,
--- HunterFood = 10,
--- CasterFood = 11,
--- HealerFood = 12,
--- SpiritAlc = 13
-
-ST.consumableIdsByCategoryFull[ST.category["Str"]] = {				-- 1
-	ST.consumableIdsByName["ElixirOfTheGiants"],
-	ST.consumableIdsByName["JujuPower"]
-}
-
-ST.consumableIdsByCategoryFull[ST.category["Agi"]] = {				-- 2
-	ST.consumableIdsByName["ElixirOfTheMongoose"]
-}
-
-ST.consumableIdsByCategoryFull[ST.category["AP"]] = {				-- 3
-	ST.consumableIdsByName["JujuMight"],
-	ST.consumableIdsByName["WinterfallFirewater"]
-}
-
-ST.consumableIdsByCategoryFull[ST.category["Armor"]] = {			-- 4
-	ST.consumableIdsByName["ElixirOfSuperiorDefense"]
-}
-
-ST.consumableIdsByCategoryFull[ST.category["SP"]] = {				-- 5
-	ST.consumableIdsByName["GreaterArcaneElixir"],
-	ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SP Pot (?)
-}
-
-ST.consumableIdsByCategoryFull[ST.category["SpecSP"]] = {			-- 6
-	ST.consumableIdsByName["ElixirOfGreaterFirepower"],
-	ST.consumableIdsByName["ElixirOfShadowPower"],
-	-- ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SpecSP Pot (?)
-}
-
-ST.consumableIdsByCategoryFull[ST.category["MP5Pot"]] = {			-- 7
-	ST.consumableIdsByName["MagebloodPotion"]
-}
-
-ST.consumableIdsByCategoryFull[ST.category["TankFood"]] = {		-- 8
-	ST.consumableIdsByName["ChimaerokChopsStamiFood"],
-	ST.consumableIdsByName["IncreasedStami10"],
-	ST.consumableIdsByName["WellFedSpiritAndStami12"],
-	ST.consumableIdsByName["WellFedSpiritAndStami14"],
-	ST.consumableIdsByName["WellFedSpiritAndStami25p"],
-	ST.consumableIdsByName["WinterCalmarAgi"],
-	ST.consumableIdsByName["BlessedSunfruitStr"],
-	ST.consumableIdsByName["SmokedDesertDumplingsStr"]
-}
-
-ST.consumableIdsByCategoryFull[ST.category["MeleeFood"]] = {		-- 9
-	ST.consumableIdsByName["WinterCalmarAgi"],
-	ST.consumableIdsByName["BlessedSunfruitStr"],
-	ST.consumableIdsByName["SmokedDesertDumplingsStr"],
-	ST.consumableIdsByName["ChimaerokChopsStamiFood"]
-}
-
-ST.consumableIdsByCategoryFull[ST.category["HunterFood"]] = {		-- 10
-	ST.consumableIdsByName["WinterCalmarAgi"],
-	ST.consumableIdsByName["NightfinSoupManaregFood"],
-	ST.consumableIdsByName["RunnTumTuberIntFood"]
-}
-
-ST.consumableIdsByCategoryFull[ST.category["CasterFood"]] = {		-- 11
-	ST.consumableIdsByName["NightfinSoupManaregFood"],
-	ST.consumableIdsByName["RunnTumTuberIntFood"]
-}
-
-ST.consumableIdsByCategoryFull[ST.category["HealerFood"]] = {		-- 12
-	ST.consumableIdsByName["NightfinSoupManaregFood"],
-	ST.consumableIdsByName["RunnTumTuberIntFood"],
-	ST.consumableIdsByName["WellFedSpiritAndStami12"],
-	ST.consumableIdsByName["WellFedSpiritAndStami14"],
-	ST.consumableIdsByName["WellFedSpiritAndStami25p"]
-}
-
-ST.consumableIdsByCategoryFull[ST.category["SpiritAlc"]] = {		-- 13
-	ST.consumableIdsByName["KreegsStoutSpiritAlc"]
-}
-
-------------------------------------------------------------------------------
--- Set Consumable Categories for Small Package
-
-ST.consumableIdsByCategorySmall = {}
-
-ST.consumableIdsByCategorySmall[ST.category["Str"]] = {		-- 1
-	ST.consumableIdsByName["ElixirOfTheGiants"],
-	ST.consumableIdsByName["JujuPower"]
-}
-
-ST.consumableIdsByCategorySmall[ST.category["Agi"]] = {		-- 2
-	ST.consumableIdsByName["ElixirOfTheMongoose"],
-	ST.consumableIdsByName["ElixirOfGreaterAgility"]
-}
-
-ST.consumableIdsByCategorySmall[ST.category["AP"]] = {		-- 3
-	nil
-}
-
-ST.consumableIdsByCategorySmall[ST.category["Armor"]] = {		-- 4
-	ST.consumableIdsByName["ElixirOfSuperiorDefense"]
-}
-
-ST.consumableIdsByCategorySmall[ST.category["SP"]] = {		-- 5
-	ST.consumableIdsByName["GreaterArcaneElixir"],
-	ST.consumableIdsByName["ArcaneElixir"],
-	ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SP Pot (?)
-}
-
-ST.consumableIdsByCategorySmall[ST.category["SpecSP"]] = {		-- 6
-	ST.consumableIdsByName["ElixirOfGreaterFirepower"],
-	ST.consumableIdsByName["ElixirOfFirepower"],
-	ST.consumableIdsByName["ElixirOfShadowPower"]
-}
-
-ST.consumableIdsByCategorySmall[ST.category["MP5Pot"]] = {		-- 7
-	ST.consumableIdsByName["MagebloodPotion"]
-}
-
-ST.consumableIdsByCategorySmall[ST.category["TankFood"]] = {		-- 8
-	ST.consumableIdsByName["ChimaerokChopsStamiFood"],
-	ST.consumableIdsByName["IncreasedStami10"],
-	ST.consumableIdsByName["WellFedSpiritAndStami12"],
-	ST.consumableIdsByName["WellFedSpiritAndStami14"],
-	ST.consumableIdsByName["WellFedSpiritAndStami25p"],
-	ST.consumableIdsByName["WinterCalmarAgi"],
-	ST.consumableIdsByName["BlessedSunfruitStr"],
-	ST.consumableIdsByName["SmokedDesertDumplingsStr"]
-}
-
-ST.consumableIdsByCategorySmall[ST.category["MeleeFood"]] = {		-- 9
-	ST.consumableIdsByName["ChimaerokChopsStamiFood"],
-	ST.consumableIdsByName["WinterCalmarAgi"],
-	ST.consumableIdsByName["BlessedSunfruitStr"],
-	ST.consumableIdsByName["SmokedDesertDumplingsStr"]
-}
-
-ST.consumableIdsByCategorySmall[ST.category["HunterFood"]] = {		-- 10
-	ST.consumableIdsByName["WinterCalmarAgi"],
-	ST.consumableIdsByName["NightfinSoupManaregFood"],
-	ST.consumableIdsByName["RunnTumTuberIntFood"]
-}
-
-ST.consumableIdsByCategorySmall[ST.category["CasterFood"]] = {		-- 11
-	ST.consumableIdsByName["NightfinSoupManaregFood"],
-	ST.consumableIdsByName["RunnTumTuberIntFood"]
-}
-
-ST.consumableIdsByCategorySmall[ST.category["HealerFood"]] = {		-- 12
-	ST.consumableIdsByName["NightfinSoupManaregFood"],
-	ST.consumableIdsByName["RunnTumTuberIntFood"],
-	ST.consumableIdsByName["WellFedSpiritAndStami12"],
-	ST.consumableIdsByName["WellFedSpiritAndStami14"],
-	ST.consumableIdsByName["WellFedSpiritAndStami25p"]
-}
-
-ST.consumableIdsByCategorySmall[ST.category["SpiritAlc"]] = {		-- 13
-	-- ST.consumableIdsByName["KreegsStoutSpiritAlc"]
-}
+ST.consumableIdsByName = ST:reverseMap(consumableIds)
