@@ -35,12 +35,10 @@ ST.buffPackages["full"][ST.category["Armor"]] = {			-- 4
 }
 ST.buffPackages["full"][ST.category["SP"]] = {				-- 5
 	ST.consumableIdsByName["GreaterArcaneElixir"],
-	ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SP Pot (?)
 }
 ST.buffPackages["full"][ST.category["SpecSP"]] = {			-- 6
 	ST.consumableIdsByName["ElixirOfGreaterFirepower"],
 	ST.consumableIdsByName["ElixirOfShadowPower"],
-	-- ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SpecSP Pot (?)
 }
 ST.buffPackages["full"][ST.category["MP5Pot"]] = {			-- 7
 	ST.consumableIdsByName["MagebloodPotion"]
@@ -99,7 +97,7 @@ ST.buffPackages["small"][ST.category["Armor"]] = {		-- 4
 ST.buffPackages["small"][ST.category["SP"]] = {		-- 5
 	ST.consumableIdsByName["GreaterArcaneElixir"],
 	ST.consumableIdsByName["ArcaneElixir"],
-	ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SP Pot (?)
+	ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SP Pot in small config
 }
 ST.buffPackages["small"][ST.category["SpecSP"]] = {		-- 6
 	ST.consumableIdsByName["ElixirOfGreaterFirepower"],

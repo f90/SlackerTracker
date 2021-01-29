@@ -31,7 +31,7 @@ function ST:PrintTo(msg, targetChannel)
         if IsInRaid() then
             ST:SendChatMessage(msg, "RAID", nil, nil)
         elseif IsInGroup() then
-            ST:SendChatMessage(msg, "GROUP", nil, nil)
+            ST:SendChatMessage(msg, "PARTY", nil, nil)
         end
     end
 end
