@@ -75,7 +75,7 @@ ST.buffPackages["full"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), {
     ST.consumableIdsByName["WellFedSpiritAndStami14"],
     ST.consumableIdsByName["WellFedSpiritAndStami25p"]
 })
-ST.buffPackages["full"]["SpiritAlc"] = ST.Requirement(ST.RoleGroup({ST.role["DRUID"], ST.role["PRIEST"]}), {        -- 13
+ST.buffPackages["full"]["SpiritAlc"] = ST.Requirement(ST.RoleGroup({ST.role["HEALDRUID"], ST.role["HEALPRIEST"]}), {        -- 13
     ST.consumableIdsByName["KreegsStoutSpiritAlc"]
 })
 
@@ -166,3 +166,6 @@ ST.buffPackages["small+greatershadowprot"] = ST:mergeBuffPackages(ST.buffPackage
 
 -- FULL+FROST (SAPH, KEL)
 ST.buffPackages["full+greaterfrostprot"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greaterfrostprot"])
+
+-- SMALL+FROST (SAPH, KEL)
+ST.buffPackages["small+greaterfrostprot"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greaterfrostprot"])

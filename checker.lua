@@ -5,11 +5,11 @@ function ST:OnUpdate()
 end
 
 function ST:getRole(name, class)
-	if ST.specialRoleByName[name] then
+	if ST.specialRoleByName[name] then -- This person is assigned a role manually - then use that
 		return ST.specialRoleByName[name]
 	else
-		assert(ST.role[class] ~= nil)
-		return ST.role[class]
+		-- Look up default role for this class and return that
+		return ST.role[ST.classToDefaultRole[class]]
 	end
 end
 

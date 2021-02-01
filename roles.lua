@@ -3,10 +3,10 @@ local addon, ST = ...
 ST.role = {
 PROT = 1, -- Warrior Tank
 BEAR = 2, -- Druid Tank
-DRUID = 3, -- Heal Druid
-PRIEST = 4, -- Heal Priest
-SHAMAN = 5, -- Heal Shaman
-WARRIOR = 6, -- DD Warrior
+HEALDRUID = 3,
+HEALPRIEST = 4,
+HEALSHAMAN = 5,
+OFFWARRIOR = 6, -- DD Warrior
 ROGUE = 7,
 HUNTER = 8,
 CAT = 9,
@@ -31,6 +31,18 @@ ST.specialRoleByName["Durator"] = ST.role["ENHANCER"]
 ST.specialRoleByName["Hämpi"] = ST.role["ENHANCER"]
 ST.specialRoleByName["Hanutamatata"] = ST.role["ELEMENTAL"]
 
+-- Default roles for each class - used if character is not in a special role override
+ST.classToDefaultRole = {
+    WARRIOR = "OFFWARRIOR",
+    DRUID = "HEALDRUID",
+    PRIEST = "HEALPRIEST",
+    SHAMAN = "HEALSHAMAN",
+    ROGUE = "ROGUE",
+    HUNTER = "HUNTER",
+    MAGE = "MAGE",
+    WARLOCK = "WARLOCK"
+}
+
 -- Build "inverse" table so that for each special role, we can directly get a list of players playing that role
 ST.specialRoleByRole = {}
 for name, role in pairs(ST.specialRoleByName) do
@@ -51,15 +63,15 @@ ST.RoleGroup = class(function(cls, roles)
         elseif roles == "TANK" then
             cls.roles = {ST.role["PROT"], ST.role["BEAR"]}
         elseif roles == "HEALER" then
-            cls.roles = {ST.role["DRUID"], ST.role["PRIEST"], ST.role["SHAMAN"]}
+            cls.roles = {ST.role["HEALDRUID"], ST.role["HEALPRIEST"], ST.role["HEALSHAMAN"]}
         elseif roles == "MELEE" then
-            cls.roles = {ST.role["PROT"], ST.role["BEAR"], ST.role["WARRIOR"], ST.role["ROGUE"], ST.role["CAT"], ST.role["ENHANCER"]}
+            cls.roles = {ST.role["PROT"], ST.role["BEAR"], ST.role["OFFWARRIOR"], ST.role["ROGUE"], ST.role["CAT"], ST.role["ENHANCER"]}
         elseif roles == "MELEEDPS" then
-            cls.roles = {ST.role["WARRIOR"], ST.role["ROGUE"], ST.role["CAT"], ST.role["ENHANCER"]}
+            cls.roles = {ST.role["OFFWARRIOR"], ST.role["ROGUE"], ST.role["CAT"], ST.role["ENHANCER"]}
         elseif roles == "PHYSICAL" then
-            cls.roles = {ST.role["PROT"], ST.role["BEAR"], ST.role["WARRIOR"], ST.role["ROGUE"], ST.role["CAT"], ST.role["ENHANCER"], ST.role["HUNTER"]}
+            cls.roles = {ST.role["PROT"], ST.role["BEAR"], ST.role["OFFWARRIOR"], ST.role["ROGUE"], ST.role["CAT"], ST.role["ENHANCER"], ST.role["HUNTER"]}
         elseif roles == "PHYSICALDPS" then
-            cls.roles = {ST.role["WARRIOR"], ST.role["ROGUE"], ST.role["CAT"], ST.role["ENHANCER"], ST.role["HUNTER"]}
+            cls.roles = {ST.role["OFFWARRIOR"], ST.role["ROGUE"], ST.role["CAT"], ST.role["ENHANCER"], ST.role["HUNTER"]}
         else
             -- Try to find this string in class list
             local singleClass = false
