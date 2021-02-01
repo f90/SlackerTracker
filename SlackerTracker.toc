@@ -6,9 +6,11 @@
 
 libs.xml
 
+class.lua
 core.lua
 utils.lua
 roles.lua
+requirement.lua
 consumables.lua
 buffPackages.lua
 checker.lua

@@ -51,17 +51,48 @@ function ST:printConsumableOverview(buffPackage) -- Prints out a buff package in
         end
         print(roleString)
 
-        for _, catInd in pairs(ST.categoriesByRole[roleInd]) do -- Go through all potentially required categories for this role
-            if ST.buffPackages[buffPackage][catInd] then -- This category might not be required for this role under this buffPackage
+        for reqName, req in pairs(ST.buffPackages[buffPackage]) do -- Go through all requirements for this role
+            if req.roleGroup:contains(roleInd) then -- Check if this requirement affects this role
                 local conString = ""
-                for _, conId in pairs(ST.buffPackages[buffPackage][catInd]) do
-                    -- print(ST.consumableIds[conId])
+                for _, conId in pairs(req.buffs) do
                     conString = conString .. ST.consumableIds[conId] .. " or "
                 end
                 conString = conString:sub(1,string.utf8len(conString)-4) -- Cut off last "or"
-                print(ST.categoryNameById[catInd]..":", conString)
+                print(reqName .. ":", conString)
             end
 		end
         print("")
 	end
+end
+
+function ST:mergeBuffPackages(p1, p2) -- Creates a new buff package independent of previous ones
+    local newReq = {}
+    for reqName, req in pairs(p1) do
+        assert(p2[reqName] == nil) --TODO At the moment, can not merge overlapping requirements.
+        newReq[reqName] = req:deepcopy()
+    end
+    for reqName, req in pairs(p2) do
+        assert(p1[reqName] == nil) --TODO At the moment, can not merge overlapping requirements.
+        newReq[reqName] = req:deepcopy()
+    end
+    return newReq
+end
+
+function ST:getSortedTableKeys(t, f)
+    local a = {}
+    for n in pairs(t) do table.insert(a, n) end
+    table.sort(a, f)
+    return a
+end
+
+function ST:pairsByKeys(t, f)
+    local a = ST:getSortedTableKeys(t, f)
+    local i = 0
+    local iter = function()
+		i = i + 1
+		if a[i] == nil then return nil
+		else return a[i], t[a[i]]
+		end
+	end
+	return iter
 end

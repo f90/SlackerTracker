@@ -6,7 +6,6 @@ end
 
 function ST:getRole(name, class)
 	if ST.specialRoleByName[name] then
-		assert(ST.specialRoleByName[name] ~= nil)
 		return ST.specialRoleByName[name]
 	else
 		assert(ST.role[class] ~= nil)
@@ -16,8 +15,6 @@ end
 
 function ST:getBuffsOfPlayer(name)
 	local buffs = {}
-	-- local buffName, icon, count, debuffType, duration, expirationTime, source, isStealable, 
-	-- nameplateShowPersonal, buffSpellId = UnitBuff(activeUnit, i)
 	local i = 1
 	local buff, _, _, _, _, _, _, _, _, buffSpellId = UnitBuff(name, i);
 	while buff do
@@ -28,10 +25,6 @@ function ST:getBuffsOfPlayer(name)
 	return buffs
 end
 
-function ST:getBuffsOfActiveUnit(activeUnit)
-	return ST:getBuffsOfPlayer(GetUnitName(activeUnit))
-end
-
 function ST:processPlayer(name, class, buffPackage)
 	-- Get list of buffs on this player
 	local buffs = ST:getBuffsOfPlayer(name, class)
@@ -39,28 +32,11 @@ function ST:processPlayer(name, class, buffPackage)
 	-- Find out role for this player
 	local role = ST:getRole(name, class)
 
-	-- Find out which consumables are required
-	local consumeCategories = ST.categoriesByRole[role]
-	assert(consumeCategories ~= nil) -- We HAVE to have a category for each role
-
-	-- Iterate over each category
+	-- Iterate over each requirement
 	local out = {}
-	for _,category in pairs(consumeCategories) do
-		local spellIds = ST.buffPackages[buffPackage][category] -- Retrieve buffs for this category
-		local buffed = false
-		if spellIds then
-			for _,buffId in pairs(spellIds) do
-				if buffs[buffId] then
-					-- Player has this buff
-					buffed = true
-				end
-			end
-		else
-			buffed = true -- This category is not required by the buff package => "buffed"
-		end
-		-- Now we know whether this player has at least one buff from the category
-		out[category] = buffed
-		--print(name .. ": " .. ST.categoryNameById[category] .. ": " .. tostring(buffed))
+	for reqName,req in pairs(ST.buffPackages[buffPackage]) do
+		local buffed = req:isFulfilled(role, buffs)
+		out[reqName] = buffed
 	end
 	return out
 end
@@ -72,7 +48,7 @@ function ST:printMissingConsumables(missingConsumesByCategory, targetChannel)
 	else
 		ST:PrintTo("Missing consumes for package " .. ST.currBuffPackage .. ":", targetChannel)
 		for cat,players in pairs(missingConsumesByCategory) do
-			ST:PrintTo(ST.categoryNameById[cat]..":  "..table.concat(players, ", "), targetChannel)
+			ST:PrintTo(cat .. ":  " .. table.concat(players, ", "), targetChannel)
 		end
 	end
 end
@@ -85,11 +61,7 @@ function ST:warnPlayers(missingConsumesByPlayer)
 	end
 
 	for player, categories in pairs(missingConsumesByPlayer) do
-		local categoryNames = {}
-		for _, cat in ipairs(categories) do
-			table.insert(categoryNames, ST.categoryNameById[cat])
-		end
-		local warnText = "You are missing buffs for categories: " .. table.concat(categoryNames, ", ")
+		local warnText = "Buff package: " .. ST.currBuffPackage .. " - You are missing buffs for categories: " .. table.concat(categories, ", ")
 		if player == GetUnitName("player") then
 			-- Exception case: Print this warning to ourselves since we can't whisper to ourselves
 			ST:Print(warnText)

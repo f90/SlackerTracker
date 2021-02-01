@@ -12,7 +12,7 @@ end
 
 function CreatePackageDropdown(dropdown, level, menuList)
 	local info = UIDropDownMenu_CreateInfo()
-	for buffPackageName,_ in pairs(ST.buffPackages) do
+	for buffPackageName,_ in ST:pairsByKeys(ST.buffPackages) do
 		local selected = (buffPackageName == ST.currBuffPackage)
 		info.func = OnPackageDropdownSelect
 		info.text, info.arg1, info.checked = buffPackageName, buffPackageName, selected
