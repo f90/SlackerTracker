@@ -26,19 +26,21 @@ ST.buffPackages["full"]["Str"] = ST.Requirement(ST.RoleGroup("MELEE"), {        
 ST.buffPackages["full"]["Agi"] = ST.Requirement(ST.RoleGroup("PHYSICAL"), {                -- 2
     ST.consumableIdsByName["ElixirOfTheMongoose"]
 })
-ST.buffPackages["full"]["AP"] = ST.Requirement(ST.RoleGroup("PHYSICALDPS"), {                -- 3
-    ST.consumableIdsByName["JujuMight"],
-    ST.consumableIdsByName["WinterfallFirewater"]
-})
+--ST.buffPackages["full"]["AP"] = ST.Requirement(ST.RoleGroup("PHYSICALDPS"), {                -- 3 --TODO Put in AP later maybe
+--    ST.consumableIdsByName["JujuMight"],
+--    ST.consumableIdsByName["WinterfallFirewater"]
+--})
 ST.buffPackages["full"]["Armor"] = ST.Requirement(ST.RoleGroup("TANK"), {           -- 4
     ST.consumableIdsByName["ElixirOfSuperiorDefense"]
 })
 ST.buffPackages["full"]["SP"] = ST.Requirement(ST.RoleGroup("CASTER"), {               -- 5
     ST.consumableIdsByName["GreaterArcaneElixir"],
+    ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SP Pots
 })
 ST.buffPackages["full"]["SpecSP"] = ST.Requirement(ST.RoleGroup("CASTER"), {            -- 6
     ST.consumableIdsByName["ElixirOfGreaterFirepower"],
     ST.consumableIdsByName["ElixirOfShadowPower"],
+    ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SP Pots
 })
 ST.buffPackages["full"]["MP5Pot/Flask"] = ST.Requirement(ST.RoleGroup("HEALER"), {            -- 7
     ST.consumableIdsByName["MagebloodPotion"],
@@ -96,12 +98,13 @@ ST.buffPackages["small"]["Armor"] = ST.Requirement(ST.RoleGroup("TANK"), {      
 ST.buffPackages["small"]["SP"] = ST.Requirement(ST.RoleGroup("CASTER"), {               -- 5
     ST.consumableIdsByName["GreaterArcaneElixir"],
 	ST.consumableIdsByName["ArcaneElixir"],
-	ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SP Pot in small config
+	ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SP Pots
 })
 ST.buffPackages["small"]["SpecSP"] = ST.Requirement(ST.RoleGroup("CASTER"), {            -- 6
 	ST.consumableIdsByName["ElixirOfGreaterFirepower"],
 	ST.consumableIdsByName["ElixirOfFirepower"],
-	ST.consumableIdsByName["ElixirOfShadowPower"]
+	ST.consumableIdsByName["ElixirOfShadowPower"],
+    ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SP Pots
 })
 ST.buffPackages["small"]["TankFood"] = ST.Requirement(ST.RoleGroup("TANK"), {        -- 8
     ST.consumableIdsByName["ChimaerokChopsStamiFood"],
@@ -139,34 +142,58 @@ ST.buffPackages["small"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), 
     ST.consumableIdsByName["WellFedSpiritAndStami25p"]
 })
 
+-- SMALL SHADOW PROT PACKAGE
+ST.buffPackages["shadowprot"] = {}
+ST.buffPackages["shadowprot"]["ShadowProt"] = ST.Requirement(ST.RoleGroup():subtract(ST.RoleGroup("TANK")), {           -- Everyone but tanks
+    ST.consumableIdsByName["ShadowProtectionPotion"],
+    ST.consumableIdsByName["GreaterShadowProtectionPotion"],
+})
+
 -- GREATER SHADOW PROT PACKAGE
 ST.buffPackages["greatershadowprot"] = {}
-ST.buffPackages["greatershadowprot"]["GreaterShadowProt"] = ST.Requirement(ST.RoleGroup(), {           -- Everyone
+ST.buffPackages["greatershadowprot"]["GreaterShadowProt"] = ST.Requirement(ST.RoleGroup():subtract(ST.RoleGroup("TANK")), {          -- Everyone but tanks
     ST.consumableIdsByName["GreaterShadowProtectionPotion"],
 })
 
 -- GREATER FIRE PROT PACKAGE
 ST.buffPackages["greaterfireprot"] = {}
-ST.buffPackages["greaterfireprot"]["GreaterFireProt"] = ST.Requirement(ST.RoleGroup(), {           -- Everyone
+ST.buffPackages["greaterfireprot"]["GreaterFireProt"] = ST.Requirement(ST.RoleGroup():subtract(ST.RoleGroup("TANK")), {           -- Everyone but tanks
+    ST.consumableIdsByName["GreaterFireProtectionPotion"],
+})
+
+-- GREATER FIRE PROT FOR MELEE DPS PACKAGE
+ST.buffPackages["greaterfireprotmelee"] = {}
+ST.buffPackages["greaterfireprotmelee"]["GreaterFireProt"] = ST.Requirement(ST.RoleGroup("MELEEDPS"), {
     ST.consumableIdsByName["GreaterFireProtectionPotion"],
 })
 
 -- GREATER FROST PROT PACKAGE
 ST.buffPackages["greaterfrostprot"] = {}
-ST.buffPackages["greaterfrostprot"]["GreaterFrostProt"] = ST.Requirement(ST.RoleGroup(), {           -- Everyone
+ST.buffPackages["greaterfrostprot"]["GreaterFrostProt"] = ST.Requirement(ST.RoleGroup():subtract(ST.RoleGroup("TANK")), {           -- Everyone but tanks
     ST.consumableIdsByName["GreaterFrostProtectionPotion"],
 })
 
 -- FULL+SHADOWPROT (LOATHEB)
-ST.buffPackages["full+greatershadowprot"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greatershadowprot"])
+ST.buffPackages["loatheb-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greatershadowprot"])
+ST.buffPackages["loatheb-full"]["MP5Pot/Flask"] = nil -- No mp5 or healer flask necessary for this boss
 
 -- SMALL+SHADOWPROT (LOATHEB)
-ST.buffPackages["small+greatershadowprot"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprot"])
+ST.buffPackages["loatheb-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprot"])
 
--- TODO 4HM - GreaterShadowProt+GreaterFireProt(for whom?)+full/small
+-- FULL+SHADOWPROT+MELEE FIREPROT (4HM) -- TODO GreaterFireProt or FireProt and for whom?
+ST.buffPackages["4hm-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greatershadowprot"], ST.buffPackages["greaterfireprotmelee"])
 
--- FULL+FROST (SAPH, KEL)
-ST.buffPackages["full+greaterfrostprot"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greaterfrostprot"])
+-- SMALL+SHADOWPROT+MELEE FIREPROT (4HM) -- TODO GreaterFireProt or FireProt and for whom?
+ST.buffPackages["4hm-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprot"], ST.buffPackages["greaterfireprotmelee"])
 
--- SMALL+FROST (SAPH, KEL)
-ST.buffPackages["small+greaterfrostprot"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greaterfrostprot"])
+-- FULL+FROST (KEL)
+ST.buffPackages["kt-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greaterfrostprot"])
+
+-- SMALL+FROST (KEL)
+ST.buffPackages["kt-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greaterfrostprot"])
+
+-- FULL+FROST+SHADOW (SAPH)
+ST.buffPackages["saph-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greaterfrostprot"], ST.buffPackages["greatershadowprot"])
+
+-- SMALL+FROST+SHADOW (SAPH)
+ST.buffPackages["saph-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greaterfrostprot"], ST.buffPackages["greatershadowprot"])

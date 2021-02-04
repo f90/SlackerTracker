@@ -65,15 +65,14 @@ function ST:printConsumableOverview(buffPackage) -- Prints out a buff package in
 	end
 end
 
-function ST:mergeBuffPackages(p1, p2) -- Creates a new buff package independent of previous ones
+function ST:mergeBuffPackages(...) -- Creates a new buff package out of a collection of existing ones, becoming independent of them in the process (deep copy)
+    local arg = {...}
     local newReq = {}
-    for reqName, req in pairs(p1) do
-        assert(p2[reqName] == nil) --TODO At the moment, can not merge overlapping requirements.
-        newReq[reqName] = req:deepcopy()
-    end
-    for reqName, req in pairs(p2) do
-        assert(p1[reqName] == nil) --TODO At the moment, can not merge overlapping requirements.
-        newReq[reqName] = req:deepcopy()
+    for _, p in ipairs(arg) do
+        for reqName, req in pairs(p) do
+            assert(newReq[reqName] == nil) --TODO At the moment, can not merge overlapping requirements.
+            newReq[reqName] = req:deepcopy()
+        end
     end
     return newReq
 end
