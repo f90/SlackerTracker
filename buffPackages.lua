@@ -40,8 +40,9 @@ ST.buffPackages["full"]["SpecSP"] = ST.Requirement(ST.RoleGroup("CASTER"), {    
     ST.consumableIdsByName["ElixirOfGreaterFirepower"],
     ST.consumableIdsByName["ElixirOfShadowPower"],
 })
-ST.buffPackages["full"]["MP5Pot"] = ST.Requirement(ST.RoleGroup("HEALER"), {            -- 7
-    ST.consumableIdsByName["MagebloodPotion"]
+ST.buffPackages["full"]["MP5Pot/Flask"] = ST.Requirement(ST.RoleGroup("HEALER"), {            -- 7
+    ST.consumableIdsByName["MagebloodPotion"],
+    ST.consumableIdsByName["FlaskOfDistilledWisdom"]
 })
 ST.buffPackages["full"]["TankFood"] = ST.Requirement(ST.RoleGroup("TANK"), {        -- 8
     ST.consumableIdsByName["ChimaerokChopsStamiFood"],
@@ -66,7 +67,10 @@ ST.buffPackages["full"]["HunterFood"] = ST.Requirement(ST.RoleGroup("HUNTER"), {
 })
 ST.buffPackages["full"]["CasterFood"] = ST.Requirement(ST.RoleGroup("CASTER"), {        -- 11
     ST.consumableIdsByName["NightfinSoupManaregFood"],
-    ST.consumableIdsByName["RunnTumTuberIntFood"]
+    ST.consumableIdsByName["RunnTumTuberIntFood"],
+    ST.consumableIdsByName["WellFedSpiritAndStami12"],
+    ST.consumableIdsByName["WellFedSpiritAndStami14"],
+    ST.consumableIdsByName["WellFedSpiritAndStami25p"]
 })
 ST.buffPackages["full"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), {        -- 12
     ST.consumableIdsByName["NightfinSoupManaregFood"],
@@ -74,9 +78,6 @@ ST.buffPackages["full"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), {
     ST.consumableIdsByName["WellFedSpiritAndStami12"],
     ST.consumableIdsByName["WellFedSpiritAndStami14"],
     ST.consumableIdsByName["WellFedSpiritAndStami25p"]
-})
-ST.buffPackages["full"]["SpiritAlc"] = ST.Requirement(ST.RoleGroup({ST.role["HEALDRUID"], ST.role["HEALPRIEST"]}), {        -- 13
-    ST.consumableIdsByName["KreegsStoutSpiritAlc"]
 })
 
 -- SMALL PACKAGE
@@ -102,9 +103,6 @@ ST.buffPackages["small"]["SpecSP"] = ST.Requirement(ST.RoleGroup("CASTER"), {   
 	ST.consumableIdsByName["ElixirOfFirepower"],
 	ST.consumableIdsByName["ElixirOfShadowPower"]
 })
-ST.buffPackages["small"]["MP5Pot"] = ST.Requirement(ST.RoleGroup("HEALER"), {            -- 7
-    ST.consumableIdsByName["MagebloodPotion"]
-})
 ST.buffPackages["small"]["TankFood"] = ST.Requirement(ST.RoleGroup("TANK"), {        -- 8
     ST.consumableIdsByName["ChimaerokChopsStamiFood"],
     ST.consumableIdsByName["IncreasedStami10"],
@@ -128,7 +126,10 @@ ST.buffPackages["small"]["HunterFood"] = ST.Requirement(ST.RoleGroup("HUNTER"), 
 })
 ST.buffPackages["small"]["CasterFood"] = ST.Requirement(ST.RoleGroup("CASTER"), {        -- 11
     ST.consumableIdsByName["NightfinSoupManaregFood"],
-    ST.consumableIdsByName["RunnTumTuberIntFood"]
+    ST.consumableIdsByName["RunnTumTuberIntFood"],
+    ST.consumableIdsByName["WellFedSpiritAndStami12"],
+    ST.consumableIdsByName["WellFedSpiritAndStami14"],
+    ST.consumableIdsByName["WellFedSpiritAndStami25p"]
 })
 ST.buffPackages["small"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), {        -- 12
     ST.consumableIdsByName["NightfinSoupManaregFood"],
