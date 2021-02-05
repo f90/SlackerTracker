@@ -20,7 +20,7 @@ ST.buffPackages = {}
 -- FULL PACKAGE
 ST.buffPackages["full"] = {}
 ST.buffPackages["full"]["Str"] = ST.Requirement(ST.RoleGroup("MELEE"), {                -- 1 Melee + Tanks
-    ST.consumableIdsByName["ElixirOfTheGiants"],
+    ST.consumableIdsByName["ElixirOfGiants"],
     ST.consumableIdsByName["JujuPower"]
 })
 ST.buffPackages["full"]["Agi"] = ST.Requirement(ST.RoleGroup("PHYSICAL"), {                -- 2
@@ -47,45 +47,45 @@ ST.buffPackages["full"]["MP5Pot/Flask"] = ST.Requirement(ST.RoleGroup("HEALER"),
     ST.consumableIdsByName["FlaskOfDistilledWisdom"]
 })
 ST.buffPackages["full"]["TankFood"] = ST.Requirement(ST.RoleGroup("TANK"), {        -- 8
-    ST.consumableIdsByName["ChimaerokChopsStamiFood"],
+    ST.consumableIdsByName["ChimaerokChops"],
     ST.consumableIdsByName["IncreasedStami10"],
-    ST.consumableIdsByName["WellFedSpiritAndStami12"],
-    ST.consumableIdsByName["WellFedSpiritAndStami14"],
-    ST.consumableIdsByName["WellFedSpiritAndStami25p"],
-    ST.consumableIdsByName["WinterCalmarAgi"],
+    ST.consumableIdsByName["StamiSpirit12"],
+    ST.consumableIdsByName["StamiSpirit14"],
+    ST.consumableIdsByName["StamiSpirit25perc"],
+    ST.consumableIdsByName["GrilledSquid"],
     ST.consumableIdsByName["BlessedSunfruitStr"],
-    ST.consumableIdsByName["SmokedDesertDumplingsStr"]
+    ST.consumableIdsByName["SmokedDesertDumplings"]
 })
 ST.buffPackages["full"]["MeleeFood"] = ST.Requirement(ST.RoleGroup("MELEEDPS"), {        -- 9
-    ST.consumableIdsByName["WinterCalmarAgi"],
+    ST.consumableIdsByName["GrilledSquid"],
     ST.consumableIdsByName["BlessedSunfruitStr"],
-    ST.consumableIdsByName["SmokedDesertDumplingsStr"],
-    ST.consumableIdsByName["ChimaerokChopsStamiFood"]
+    ST.consumableIdsByName["SmokedDesertDumplings"],
+    ST.consumableIdsByName["ChimaerokChops"]
 })
 ST.buffPackages["full"]["HunterFood"] = ST.Requirement(ST.RoleGroup("HUNTER"), {        -- 10
-    ST.consumableIdsByName["WinterCalmarAgi"],
-    ST.consumableIdsByName["NightfinSoupManaregFood"],
-    ST.consumableIdsByName["RunnTumTuberIntFood"]
+    ST.consumableIdsByName["GrilledSquid"],
+    ST.consumableIdsByName["NightfinSoup"],
+    ST.consumableIdsByName["RunnTumTuberInt"]
 })
 ST.buffPackages["full"]["CasterFood"] = ST.Requirement(ST.RoleGroup("CASTER"), {        -- 11
-    ST.consumableIdsByName["NightfinSoupManaregFood"],
-    ST.consumableIdsByName["RunnTumTuberIntFood"],
-    ST.consumableIdsByName["WellFedSpiritAndStami12"],
-    ST.consumableIdsByName["WellFedSpiritAndStami14"],
-    ST.consumableIdsByName["WellFedSpiritAndStami25p"]
+    ST.consumableIdsByName["NightfinSoup"],
+    ST.consumableIdsByName["RunnTumTuberInt"],
+    ST.consumableIdsByName["StamiSpirit12"],
+    ST.consumableIdsByName["StamiSpirit14"],
+    ST.consumableIdsByName["StamiSpirit25perc"]
 })
 ST.buffPackages["full"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), {        -- 12
-    ST.consumableIdsByName["NightfinSoupManaregFood"],
-    ST.consumableIdsByName["RunnTumTuberIntFood"],
-    ST.consumableIdsByName["WellFedSpiritAndStami12"],
-    ST.consumableIdsByName["WellFedSpiritAndStami14"],
-    ST.consumableIdsByName["WellFedSpiritAndStami25p"]
+    ST.consumableIdsByName["NightfinSoup"],
+    ST.consumableIdsByName["RunnTumTuberInt"],
+    ST.consumableIdsByName["StamiSpirit12"],
+    ST.consumableIdsByName["StamiSpirit14"],
+    ST.consumableIdsByName["StamiSpirit25perc"]
 })
 
 -- SMALL PACKAGE
 ST.buffPackages["small"] = {}
 ST.buffPackages["small"]["Str"] = ST.Requirement(ST.RoleGroup("MELEE"), {                -- 1 Melee + Tanks
-    ST.consumableIdsByName["ElixirOfTheGiants"],
+    ST.consumableIdsByName["ElixirOfGiants"],
     ST.consumableIdsByName["JujuPower"]
 })
 ST.buffPackages["small"]["Agi"] = ST.Requirement(ST.RoleGroup("PHYSICAL"), {                -- 2
@@ -107,39 +107,39 @@ ST.buffPackages["small"]["SpecSP"] = ST.Requirement(ST.RoleGroup("CASTER"), {   
     ST.consumableIdsByName["FlaskOfSupremePower"] -- Flask may replace SP Pots
 })
 ST.buffPackages["small"]["TankFood"] = ST.Requirement(ST.RoleGroup("TANK"), {        -- 8
-    ST.consumableIdsByName["ChimaerokChopsStamiFood"],
+    ST.consumableIdsByName["ChimaerokChops"],
     ST.consumableIdsByName["IncreasedStami10"],
-    ST.consumableIdsByName["WellFedSpiritAndStami12"],
-    ST.consumableIdsByName["WellFedSpiritAndStami14"],
-    ST.consumableIdsByName["WellFedSpiritAndStami25p"],
-    ST.consumableIdsByName["WinterCalmarAgi"],
+    ST.consumableIdsByName["StamiSpirit12"],
+    ST.consumableIdsByName["StamiSpirit14"],
+    ST.consumableIdsByName["StamiSpirit25perc"],
+    ST.consumableIdsByName["GrilledSquid"],
     ST.consumableIdsByName["BlessedSunfruitStr"],
-    ST.consumableIdsByName["SmokedDesertDumplingsStr"]
+    ST.consumableIdsByName["SmokedDesertDumplings"]
 })
 ST.buffPackages["small"]["MeleeFood"] = ST.Requirement(ST.RoleGroup("MELEEDPS"), {        -- 9
-    ST.consumableIdsByName["WinterCalmarAgi"],
+    ST.consumableIdsByName["GrilledSquid"],
     ST.consumableIdsByName["BlessedSunfruitStr"],
-    ST.consumableIdsByName["SmokedDesertDumplingsStr"],
-    ST.consumableIdsByName["ChimaerokChopsStamiFood"]
+    ST.consumableIdsByName["SmokedDesertDumplings"],
+    ST.consumableIdsByName["ChimaerokChops"]
 })
 ST.buffPackages["small"]["HunterFood"] = ST.Requirement(ST.RoleGroup("HUNTER"), {        -- 10
-    ST.consumableIdsByName["WinterCalmarAgi"],
-    ST.consumableIdsByName["NightfinSoupManaregFood"],
-    ST.consumableIdsByName["RunnTumTuberIntFood"]
+    ST.consumableIdsByName["GrilledSquid"],
+    ST.consumableIdsByName["NightfinSoup"],
+    ST.consumableIdsByName["RunnTumTuberInt"]
 })
 ST.buffPackages["small"]["CasterFood"] = ST.Requirement(ST.RoleGroup("CASTER"), {        -- 11
-    ST.consumableIdsByName["NightfinSoupManaregFood"],
-    ST.consumableIdsByName["RunnTumTuberIntFood"],
-    ST.consumableIdsByName["WellFedSpiritAndStami12"],
-    ST.consumableIdsByName["WellFedSpiritAndStami14"],
-    ST.consumableIdsByName["WellFedSpiritAndStami25p"]
+    ST.consumableIdsByName["NightfinSoup"],
+    ST.consumableIdsByName["RunnTumTuberInt"],
+    ST.consumableIdsByName["StamiSpirit12"],
+    ST.consumableIdsByName["StamiSpirit14"],
+    ST.consumableIdsByName["StamiSpirit25perc"]
 })
 ST.buffPackages["small"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), {        -- 12
-    ST.consumableIdsByName["NightfinSoupManaregFood"],
-    ST.consumableIdsByName["RunnTumTuberIntFood"],
-    ST.consumableIdsByName["WellFedSpiritAndStami12"],
-    ST.consumableIdsByName["WellFedSpiritAndStami14"],
-    ST.consumableIdsByName["WellFedSpiritAndStami25p"]
+    ST.consumableIdsByName["NightfinSoup"],
+    ST.consumableIdsByName["RunnTumTuberInt"],
+    ST.consumableIdsByName["StamiSpirit12"],
+    ST.consumableIdsByName["StamiSpirit14"],
+    ST.consumableIdsByName["StamiSpirit25perc"]
 })
 
 -- SMALL SHADOW PROT PACKAGE
