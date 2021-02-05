@@ -173,6 +173,12 @@ ST.buffPackages["greaterfrostprot"]["GreaterFrostProt"] = ST.Requirement(ST.Role
     ST.consumableIdsByName["GreaterFrostProtectionPotion"],
 })
 
+-- FROST JUJU PACKAGE
+ST.buffPackages["frostjuju"] = {}
+ST.buffPackages["frostjuju"]["ExtraFrostProt"] = ST.Requirement(ST.RoleGroup(), {           -- Everyone
+    ST.consumableIdsByName["JujuChill"],
+})
+
 -- FULL+SHADOWPROT (LOATHEB)
 ST.buffPackages["loatheb-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greatershadowprot"])
 ST.buffPackages["loatheb-full"]["MP5Pot/Flask"] = nil -- No mp5 or healer flask necessary for this boss
@@ -192,8 +198,14 @@ ST.buffPackages["kt-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.bu
 -- SMALL+FROST (KEL)
 ST.buffPackages["kt-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greaterfrostprot"])
 
--- FULL+FROST+SHADOW (SAPH)
-ST.buffPackages["saph-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greaterfrostprot"], ST.buffPackages["greatershadowprot"])
+-- FULL+FROST+FROSTJUJU+SHADOW (SAPH)
+ST.buffPackages["saph-full"] = ST:mergeBuffPackages(ST.buffPackages["full"],
+        ST.buffPackages["greaterfrostprot"],
+        ST.buffPackages["frostjuju"],
+        ST.buffPackages["greatershadowprot"])
 
--- SMALL+FROST+SHADOW (SAPH)
-ST.buffPackages["saph-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greaterfrostprot"], ST.buffPackages["greatershadowprot"])
+-- SMALL+FROST+FROSTJUJU+SHADOW (SAPH)
+ST.buffPackages["saph-small"] = ST:mergeBuffPackages(ST.buffPackages["small"],
+        ST.buffPackages["greaterfrostprot"],
+        ST.buffPackages["frostjuju"],
+        ST.buffPackages["greatershadowprot"])
