@@ -47,7 +47,7 @@ function ST:printMissingConsumables(missingConsumesByCategory, targetChannel)
 		ST:PrintTo("No consumes are missing for package " .. ST.currBuffPackage, targetChannel)
 	else
 		ST:PrintTo("Missing consumes for package " .. ST.currBuffPackage .. ":", targetChannel)
-		for cat,players in pairs(missingConsumesByCategory) do
+		for cat,players in ST:pairsByKeys(missingConsumesByCategory) do
 			ST:PrintTo(cat .. ":  " .. table.concat(players, ", "), targetChannel)
 		end
 	end

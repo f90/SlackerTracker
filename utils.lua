@@ -44,14 +44,14 @@ end
 
 function ST:printConsumableOverview(buffPackage) -- Prints out a buff package in readable form, listing for each role the list of categories to buff up, and which buffs fulfil these categories
     print("BUFF PACKAGE: " .. buffPackage)
-	for role,roleInd in pairs(ST.role) do -- Go through each role
+	for role,roleInd in ST:pairsByKeys(ST.role) do -- Go through each role
 		local roleString = role
         if ST.specialRoleByRole[roleInd] then -- List specific names assigned to special roles too, if we have them
             roleString = roleString .. " (" .. table.concat(ST.specialRoleByRole[roleInd], ", ") .. ")"
         end
         print(roleString)
 
-        for reqName, req in pairs(ST.buffPackages[buffPackage]) do -- Go through all requirements for this role
+        for reqName, req in ST:pairsByKeys(ST.buffPackages[buffPackage]) do -- Go through all requirements for this role
             if req.roleGroup:contains(roleInd) then -- Check if this requirement affects this role
                 local conString = ""
                 for _, conId in pairs(req.buffs) do
