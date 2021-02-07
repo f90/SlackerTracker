@@ -1,7 +1,7 @@
 ## Interface: 11306
 ## Title: Slacker Tracker
 ## Notes: Tracks a number of Consumables and Buffs
-## Author: fuse
+## Author: f90
 ## Version: 0.1
 
 libs.xml

@@ -10,13 +10,13 @@ ST.Requirement = class(function(cls, roleGroup, buffs)
     cls.buffs = buffs
 end)
 
-function ST.Requirement:isFulfilled(role, buffs)
+function ST.Requirement:isFulfilled(role, currBuffs)
     if not self.roleGroup:contains(role) then
         return true -- Requirement is "fulfilled" if this role is not adressed by this requirement
     else
         -- Check whether the current buffs contain one of the required consumables
         for _, buffID in ipairs(self.buffs) do
-            if buffs[buffID] then
+            if currBuffs[buffID] then
                 return true
             end
         end

@@ -48,7 +48,6 @@ ST.buffPackages["full"]["MP5Pot/Flask"] = ST.Requirement(ST.RoleGroup("HEALER"),
 })
 ST.buffPackages["full"]["TankFood"] = ST.Requirement(ST.RoleGroup("TANK"), {        -- 8
     ST.consumableIdsByName["ChimaerokChops"],
-    ST.consumableIdsByName["IncreasedStami10"],
     ST.consumableIdsByName["StamiSpirit12"],
     ST.consumableIdsByName["StamiSpirit14"],
     ST.consumableIdsByName["StamiSpirit25perc"],
@@ -108,7 +107,6 @@ ST.buffPackages["small"]["SpecSP"] = ST.Requirement(ST.RoleGroup("CASTER"), {   
 })
 ST.buffPackages["small"]["TankFood"] = ST.Requirement(ST.RoleGroup("TANK"), {        -- 8
     ST.consumableIdsByName["ChimaerokChops"],
-    ST.consumableIdsByName["IncreasedStami10"],
     ST.consumableIdsByName["StamiSpirit12"],
     ST.consumableIdsByName["StamiSpirit14"],
     ST.consumableIdsByName["StamiSpirit25perc"],
