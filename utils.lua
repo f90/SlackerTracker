@@ -37,8 +37,19 @@ function ST:PrintTo(msg, targetChannel)
 end
 
 function ST:SendChatMessage(msg, chatType, language, channel)
+    local MAX_MSG_LEN = 250 - string.utf8len(ST._ChatString) - 1
     if msg ~= nil and string.utf8len(msg) > 0 then -- Check if message is non-nil and not empty (disabled in settings)
-        SendChatMessage(ST._ChatString .. " " .. msg, chatType, language, channel)
+        -- If message is too long, split into multiple parts and try sending those one by one
+        local restMsg = msg
+        while string.utf8len(restMsg) > 0 do
+            if string.utf8len(restMsg) < MAX_MSG_LEN then
+                SendChatMessage(ST._ChatString .. " " .. restMsg, chatType, language, channel)
+                restMsg = ""
+            else
+                SendChatMessage(ST._ChatString .. " " .. restMsg:sub(1,MAX_MSG_LEN), chatType, language, channel)
+                restMsg = restMsg:sub(MAX_MSG_LEN)
+            end
+        end
     end
 end
 
