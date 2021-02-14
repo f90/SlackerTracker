@@ -64,6 +64,8 @@ consumableIds[18141] = "BlessedSunfruitJuice"
 consumableIds[19710] = "StamiSpirit12" -- +12 Spirit+Stami. From Heavy Kodo Stew, Monster Omelette, Tender Wolf Steak, Spiced Chili Crab, Spider Sausage, Savory Sausage (Brewfest,TBC+), Thunderbrew Ale (Brewfest,TBC+) TODO NEED TO CHECK SPELL ID
 consumableIds[19711] = "StamiSpirit14" -- +14 Spirit+Stami. From Pickled Sausage (Brewfest), Thunderbrew Stout (Brewfest) TODO NEED TO CHECK SPELL ID
 consumableIds[24870] = "StamiSpirit25perc" -- + level/4 Spirit+Stami. From Winter Veil Cookie (Patch 1.13), Bobbing Apple (Patch 1.13) TODO NEED TO CHECK SPELL ID
+consumableIds[27721] = "VeryBerryCream" -- +23 SP - Very berry cream - Seasonal --TODO check spell ID
+consumableIds[27741] = "LoveIsInTheAir" -- +23 SP - Seasonal --TODO check spell ID
 -- alc
 consumableIds[22790] = "KreegsStoutAlc" -- +25 Spirit TODO NEED TO CHECK SPELL ID
 

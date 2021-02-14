@@ -71,7 +71,9 @@ ST.buffPackages["full"]["CasterFood"] = ST.Requirement(ST.RoleGroup("CASTER"), {
     ST.consumableIdsByName["RunnTumTuberInt"],
     ST.consumableIdsByName["StamiSpirit12"],
     ST.consumableIdsByName["StamiSpirit14"],
-    ST.consumableIdsByName["StamiSpirit25perc"]
+    ST.consumableIdsByName["StamiSpirit25perc"],
+    ST.consumableIdsByName["VeryBerryCream"],
+    ST.consumableIdsByName["LoveIsInTheAir"]
 })
 ST.buffPackages["full"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), {        -- 12
     ST.consumableIdsByName["NightfinSoup"],
@@ -130,7 +132,9 @@ ST.buffPackages["small"]["CasterFood"] = ST.Requirement(ST.RoleGroup("CASTER"), 
     ST.consumableIdsByName["RunnTumTuberInt"],
     ST.consumableIdsByName["StamiSpirit12"],
     ST.consumableIdsByName["StamiSpirit14"],
-    ST.consumableIdsByName["StamiSpirit25perc"]
+    ST.consumableIdsByName["StamiSpirit25perc"],
+    ST.consumableIdsByName["VeryBerryCream"],
+    ST.consumableIdsByName["LoveIsInTheAir"],
 })
 ST.buffPackages["small"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), {        -- 12
     ST.consumableIdsByName["NightfinSoup"],
@@ -171,6 +175,12 @@ ST.buffPackages["greaterfrostprot"]["GreaterFrostProt"] = ST.Requirement(ST.Role
     ST.consumableIdsByName["GreaterFrostProtectionPotion"],
 })
 
+-- GREATER NATURE PROT PACKAGE
+ST.buffPackages["greaternatureprot"] = {}
+ST.buffPackages["greaternatureprot"]["GreaterNatureProt"] = ST.Requirement(ST.RoleGroup():subtract(ST.RoleGroup("TANK")), {           -- Everyone but tanks
+    ST.consumableIdsByName["GreaterNatureProtectionPotion"],
+})
+
 -- FROST JUJU PACKAGE
 ST.buffPackages["frostjuju"] = {}
 ST.buffPackages["frostjuju"]["ExtraFrostProt"] = ST.Requirement(ST.RoleGroup(), {           -- Everyone
@@ -180,15 +190,16 @@ ST.buffPackages["frostjuju"]["ExtraFrostProt"] = ST.Requirement(ST.RoleGroup(), 
 -- FULL+SHADOWPROT (LOATHEB)
 ST.buffPackages["loatheb-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greatershadowprot"])
 ST.buffPackages["loatheb-full"]["MP5Pot/Flask"] = nil -- No mp5 or healer flask necessary for this boss
+ST.buffPackages["loatheb-full"]["HealerFood"] = nil -- No healer food necessary for this boss
 
 -- SMALL+SHADOWPROT (LOATHEB)
 ST.buffPackages["loatheb-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprot"])
 
--- FULL+SHADOWPROT+MELEE FIREPROT (4HM) -- TODO GreaterFireProt or FireProt and for whom?
-ST.buffPackages["4hm-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greatershadowprot"], ST.buffPackages["greaterfireprotmelee"])
+-- FULL+SHADOWPROT+MELEE FIREPROT (4HM)
+ST.buffPackages["4hm-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greatershadowprot"])
 
--- SMALL+SHADOWPROT+MELEE FIREPROT (4HM) -- TODO GreaterFireProt or FireProt and for whom?
-ST.buffPackages["4hm-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprot"], ST.buffPackages["greaterfireprotmelee"])
+-- SMALL+SHADOWPROT+MELEE FIREPROT (4HM)
+ST.buffPackages["4hm-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprot"])
 
 -- FULL+FROST (KEL)
 ST.buffPackages["kt-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greaterfrostprot"])

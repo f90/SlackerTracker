@@ -23,7 +23,6 @@ ST.specialRoleByName = {}
 ST.specialRoleByName["Tyranox"] = ST.role["PROT"]
 ST.specialRoleByName["Skogtroll"] = ST.role["PROT"]
 ST.specialRoleByName["Arák"] = ST.role["PROT"]
-ST.specialRoleByName["Kronk"] = ST.role["PROT"]
 ST.specialRoleByName["Mudcrawler"] = ST.role["BEAR"]
 ST.specialRoleByName["Mafox"] = ST.role["CAT"]
 ST.specialRoleByName["Pakuun"] = ST.role["CAT"]
