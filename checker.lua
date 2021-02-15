@@ -42,6 +42,10 @@ function ST:processPlayer(name, class, buffPackage)
 end
 
 function ST:printMissingConsumables(missingConsumesByCategory, targetChannel)
+	if targetChannel == "GROUP" and (not (IsInGroup() or IsInRaid())) then
+		ST:Print("ERROR: You tried to warn the group/raid about missing consumables, but are not in a group/raid!")
+		return
+	end
 	-- Output missingConsumes by Category
 	if ST:tabLength(missingConsumesByCategory) == 0 then
 		ST:PrintTo("No consumes are missing for package " .. ST.currBuffPackage, targetChannel)
@@ -54,12 +58,11 @@ function ST:printMissingConsumables(missingConsumesByCategory, targetChannel)
 end
 
 function ST:warnPlayers(missingConsumesByPlayer)
-	-- Send whispers to each player that is missing some buffs, with a list of categories that are missing
 	if not (IsInGroup() or IsInRaid()) then
-		ST:Print("ERROR: You tried to warn the group/raid about missing ")
+		ST:Print("ERROR: You tried to warn the group/raid about missing consumables, but are not in a group/raid!")
 		return
 	end
-
+	-- Send whispers to each player that is missing some buffs, with a list of categories that are missing
 	for player, categories in pairs(missingConsumesByPlayer) do
 		local warnText = "Buff package: " .. ST.currBuffPackage .. " - You are missing buffs for categories: " .. table.concat(categories, ", ")
 		if player == GetUnitName("player") then
