@@ -72,6 +72,7 @@ ST.buffPackages["full"]["CasterFood"] = ST.Requirement(ST.RoleGroup("CASTER"), {
     ST:getConsumableID("LoveIsInTheAir")
 })
 ST.buffPackages["full"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), {        -- 12
+    ST:getConsumableID("BlessedSunfruitJuice"),
     ST:getConsumableID("NightfinSoup"),
     ST:getConsumableID("RunnTumTuberInt"),
     ST:getConsumableID("StamiSpirit12"),
@@ -133,6 +134,7 @@ ST.buffPackages["small"]["CasterFood"] = ST.Requirement(ST.RoleGroup("CASTER"), 
     ST:getConsumableID("LoveIsInTheAir"),
 })
 ST.buffPackages["small"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), {        -- 12
+    ST:getConsumableID("BlessedSunfruitJuice"),
     ST:getConsumableID("NightfinSoup"),
     ST:getConsumableID("RunnTumTuberInt"),
     ST:getConsumableID("StamiSpirit12"),

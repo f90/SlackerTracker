@@ -66,7 +66,7 @@ function ST:printConsumableOverview(buffPackage) -- Prints out a buff package in
             if req.roleGroup:contains(roleInd) then -- Check if this requirement affects this role
                 local conString = ""
                 for _, conId in pairs(req.buffs) do
-                    conString = conString .. ST.consumableIds[conId] .. " or "
+                    conString = conString .. ST:getConsumableName(conId) .. " or "
                 end
                 conString = conString:sub(1,string.utf8len(conString)-4) -- Cut off last "or"
                 print(reqName .. ":", conString)
