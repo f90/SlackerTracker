@@ -184,10 +184,10 @@ ST.buffPackages["greaterfrostprot"]["GreaterFrostProt"] = ST.Requirement(ST.Role
 })
 
 -- GREATER NATURE PROT PACKAGE
---ST.buffPackages["greaternatureprot"] = {}
---ST.buffPackages["greaternatureprot"]["GreaterNatureProt"] = ST.Requirement(ST.RoleGroup():subtract(ST.RoleGroup("TANK")), {           -- Everyone but tanks
---    ST:getConsumableID("GreaterNatureProtectionPotion"),
---})
+ST.buffPackages["greaternatureprot"] = {}
+ST.buffPackages["greaternatureprot"]["GreaterNatureProt"] = ST.Requirement(ST.RoleGroup():subtract(ST.RoleGroup("TANK")), {           -- Everyone but tanks
+    ST:getConsumableID("GreaterNatureProtectionPotion"),
+})
 
 -- FROST JUJU PACKAGE
 ST.buffPackages["frostjuju"] = {}
