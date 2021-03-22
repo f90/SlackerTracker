@@ -150,14 +150,6 @@ ST.buffPackages["food"]["HunterFood"] = ST.buffPackages["full"]["HunterFood"]:de
 ST.buffPackages["food"]["CasterFood"] = ST.buffPackages["full"]["CasterFood"]:deepcopy()
 ST.buffPackages["food"]["HealerFood"] = ST.buffPackages["full"]["HealerFood"]:deepcopy()
 
--- ZANZA PACKAGE
---ST.buffPackages["zanza"] = {}
---ST.buffPackages["zanza"]["AnyZanza"] = ST.Requirement(ST.RoleGroup(), {
---    ST:getConsumableID("SpiritOfZanza"],
---    ST:getConsumableID("SwiftnessOfZanza"],
---    ST:getConsumableID("SheenOfZanza"]
---})
-
 -- SMALL SHADOW PROT PACKAGE
 ST.buffPackages["shadowprot"] = {}
 ST.buffPackages["shadowprot"]["ShadowProt"] = ST.Requirement(ST.RoleGroup():subtract(ST.RoleGroup("TANK")), {           -- Everyone but tanks
@@ -202,12 +194,16 @@ ST.buffPackages["loatheb-full"]["HealerFood"] = nil -- No healer food necessary 
 
 -- SMALL+SHADOWPROT (LOATHEB)
 ST.buffPackages["loatheb-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprot"])
+ST.buffPackages["loatheb-small"]["MP5Pot/Flask"] = nil -- No mp5 or healer flask necessary for this boss
+ST.buffPackages["loatheb-small"]["HealerFood"] = nil -- No healer food necessary for this boss
 
--- FULL+SHADOWPROT+MELEE FIREPROT (4HM)
-ST.buffPackages["4hm-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greatershadowprot"])
-
--- SMALL+SHADOWPROT+MELEE FIREPROT (4HM)
-ST.buffPackages["4hm-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprot"])
+-- FULL+SHADOWPROT (4HM)
+ST.buffPackages["greatershadowprotnohealer"] = {}
+ST.buffPackages["greatershadowprotnohealer"]["GreaterShadowProt"] = ST.Requirement(ST.RoleGroup():subtract(ST.RoleGroup("TANK")):subtract(ST.RoleGroup("HEALER")), {
+    ST:getConsumableID("GreaterShadowProtectionPotion"),
+})
+ST.buffPackages["4hm-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greatershadowprotnohealer"])
+ST.buffPackages["4hm-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprotnohealer"])
 
 -- BUFF-FOOD+FROST (KEL)
 ST.buffPackages["kt-food"] = ST:mergeBuffPackages(ST.buffPackages["food"], ST.buffPackages["greaterfrostprot"])
