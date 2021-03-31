@@ -104,6 +104,10 @@ ST.buffPackages["small"]["SpecSP"] = ST.Requirement(ST.RoleGroup("CASTER"), {   
 	ST:getConsumableID("ElixirOfShadowPower"),
     ST:getConsumableID("FlaskOfSupremePower") -- Flask may replace SP Pots
 })
+ST.buffPackages["small"]["MP5Pot/Flask"] = ST.Requirement(ST.RoleGroup("HEALER"), {            -- 7
+    ST:getConsumableID("MagebloodPotion"),
+    ST:getConsumableID("FlaskOfDistilledWisdom")
+})
 ST.buffPackages["small"]["TankFood"] = ST.Requirement(ST.RoleGroup("TANK"), {        -- 8
     ST:getConsumableID("ChimaerokChops"),
     ST:getConsumableID("StamiSpirit12"),
@@ -187,41 +191,29 @@ ST.buffPackages["frostjuju"]["ExtraFrostProt"] = ST.Requirement(ST.RoleGroup(), 
     ST:getConsumableID("JujuChill"),
 })
 
--- FULL+SHADOWPROT (LOATHEB)
-ST.buffPackages["loatheb-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greatershadowprot"])
-ST.buffPackages["loatheb-full"]["MP5Pot/Flask"] = nil -- No mp5 or healer flask necessary for this boss
-ST.buffPackages["loatheb-full"]["HealerFood"] = nil -- No healer food necessary for this boss
-
 -- SMALL+SHADOWPROT (LOATHEB)
-ST.buffPackages["loatheb-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprot"])
-ST.buffPackages["loatheb-small"]["MP5Pot/Flask"] = nil -- No mp5 or healer flask necessary for this boss
-ST.buffPackages["loatheb-small"]["HealerFood"] = nil -- No healer food necessary for this boss
+ST.buffPackages["loatheb"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprot"])
+ST.buffPackages["loatheb"]["MP5Pot/Flask"] = nil -- No mp5 or healer flask necessary for this boss
+ST.buffPackages["loatheb"]["HealerFood"] = nil -- No healer food necessary for this boss
 
--- FULL+SHADOWPROT (4HM)
+-- SMALL+SHADOWPROT except healer (4HM)
 ST.buffPackages["greatershadowprotnohealer"] = {}
 ST.buffPackages["greatershadowprotnohealer"]["GreaterShadowProt"] = ST.Requirement(ST.RoleGroup():subtract(ST.RoleGroup("TANK")):subtract(ST.RoleGroup("HEALER")), {
     ST:getConsumableID("GreaterShadowProtectionPotion"),
 })
-ST.buffPackages["4hm-full"] = ST:mergeBuffPackages(ST.buffPackages["full"], ST.buffPackages["greatershadowprotnohealer"])
-ST.buffPackages["4hm-small"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprotnohealer"])
+ST.buffPackages["4hm"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greatershadowprotnohealer"])
 
--- BUFF-FOOD+FROST (KEL)
-ST.buffPackages["kt-food"] = ST:mergeBuffPackages(ST.buffPackages["food"], ST.buffPackages["greaterfrostprot"])
+-- SMALL+FROST (KEL)
+ST.buffPackages["kt"] = ST:mergeBuffPackages(ST.buffPackages["small"], ST.buffPackages["greaterfrostprot"])
 
--- FULL+FROST+FROSTJUJU+SHADOW (SAPH)
-ST.buffPackages["saph-full"] = ST:mergeBuffPackages(ST.buffPackages["full"],
+-- SMALL+FROST+FROSTJUJU+SHADOW (SAPH)
+ST.buffPackages["saph"] = ST:mergeBuffPackages(ST.buffPackages["small"],
         ST.buffPackages["greaterfrostprot"],
         ST.buffPackages["frostjuju"],
         ST.buffPackages["greatershadowprot"])
-ST.buffPackages["saph-full"]["ExtraHP"] = ST.Requirement(ST.RoleGroup(), { -- Additional HP buff that stacks with everything else since Saph hits hard
+ST.buffPackages["saph"]["ExtraHP"] = ST.Requirement(ST.RoleGroup(), { -- Additional HP buff that stacks with everything else since Saph hits hard
     ST:getConsumableID("ElixirOfFortitude120HP"),
     ST:getConsumableID("GordokGrog"),
     ST:getConsumableID("RumseyRumBlack"),
     ST:getConsumableID("SpiritOfZanza")
 })
-
--- SMALL+FROST+FROSTJUJU+SHADOW (SAPH)
-ST.buffPackages["saph-small"] = ST:mergeBuffPackages(ST.buffPackages["small"],
-        ST.buffPackages["greaterfrostprot"],
-        ST.buffPackages["frostjuju"],
-        ST.buffPackages["greatershadowprot"])
