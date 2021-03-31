@@ -6,6 +6,7 @@
 
 libs.xml
 
+chatfilter.lua
 class.lua
 core.lua
 utils.lua

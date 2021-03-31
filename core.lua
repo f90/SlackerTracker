@@ -29,6 +29,8 @@ function ST:OnInitialize()
 
 	-- Add console command listener
 	self:RegisterChatCommand("st", "processConsoleCommand")
+
+	ST.setupFilter()
 end
 
 function ST:processConsoleCommand(cmd)

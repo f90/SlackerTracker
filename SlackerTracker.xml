@@ -43,6 +43,7 @@
                         elseif button == "MiddleButton" then
                            ST:checkConsumables("GROUP")
                         elseif button == "RightButton" then
+                           ST:checkConsumables("CONSOLE")
                            ST:checkConsumables("WHISPER")
                         end
                     </OnClick>
