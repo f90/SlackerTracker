@@ -77,7 +77,9 @@ ST.buffPackages["full"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), {
     ST:getConsumableID("RunnTumTuberInt"),
     ST:getConsumableID("StamiSpirit12"),
     ST:getConsumableID("StamiSpirit14"),
-    ST:getConsumableID("StamiSpirit25perc")
+    ST:getConsumableID("StamiSpirit25perc"),
+    ST:getConsumableID("AlteracSpringSpirit10"),
+    ST:getConsumableID("KreegsStoutAlc")
 })
 
 -- SMALL PACKAGE
@@ -143,7 +145,9 @@ ST.buffPackages["small"]["HealerFood"] = ST.Requirement(ST.RoleGroup("HEALER"), 
     ST:getConsumableID("RunnTumTuberInt"),
     ST:getConsumableID("StamiSpirit12"),
     ST:getConsumableID("StamiSpirit14"),
-    ST:getConsumableID("StamiSpirit25perc")
+    ST:getConsumableID("StamiSpirit25perc"),
+    ST:getConsumableID("AlteracSpringSpirit10"),
+    ST:getConsumableID("KreegsStoutAlc")
 })
 
 -- ONLY BUFF-FOOD PACKAGE

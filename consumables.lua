@@ -66,6 +66,7 @@ consumableIds[19711] = "StamiSpirit14" -- +14 Spirit+Stami. From Pickled Sausage
 consumableIds[24870] = "StamiSpirit25perc" -- + level/4 Spirit+Stami. From Winter Veil Cookie (Patch 1.13), Bobbing Apple (Patch 1.13) TODO NEED TO CHECK SPELL ID
 consumableIds[27721] = "VeryBerryCream" -- +23 SP - Very berry cream - Seasonal
 consumableIds[27741] = "LoveIsInTheAir" -- +23 SP - Seasonal --TODO check spell ID
+consumableIds[23697] = "AlteracSpringSpirit10" -- Bottled Alterac Spring Water +10 Spirit
 -- alc
 consumableIds[22790] = "KreegsStoutAlc" -- +25 Spirit TODO NEED TO CHECK SPELL ID
 
